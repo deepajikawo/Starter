@@ -21,11 +21,13 @@ class HashTable:
                 found = True
                 break
         if not found:
-            self.arr[h].append((kay, value))
+            self.arr[h].append((key, value))
 
-    def __getitem__(self, item):
-        h = self.get_hash(item)
-        return self.arr[h]
+    def __getitem__(self, key):
+        h = self.get_hash(key)
+        for element in self.arr[h]:
+            if element[0] == key:
+                return element[1]
 
     def __delitem__(self, key):
         h = self.get_hash(key)
@@ -33,11 +35,11 @@ class HashTable:
 
 
 table = HashTable()
-table["primary 1"] = 45
-table["primary 2"] = 77
-table["primary 3"] = 120
+table["march 6"] = 45
+table["march 7"] = 77
+table["march 8"] = 120
+table["march 17"] = 820
 
-del table["primary 2"]
 
-print(table["primary 3"])
-table.print()
+print(table["march 6"])
+print(table["march 17"])
